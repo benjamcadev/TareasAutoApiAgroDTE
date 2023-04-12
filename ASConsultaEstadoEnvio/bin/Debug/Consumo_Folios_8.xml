@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ConsumoFolios xmlns="http://www.sii.cl/SiiDte" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sii.cl/SiiDte ConsumoFolio_v10.xsd" version="1.0">
+<DocumentoConsumoFolios ID="Consumo_Folios_8">
+<Caratula version="1.0">
+<RutEmisor>76958430-7</RutEmisor>
+<RutEnvia>6402678-K</RutEnvia>
+<FchResol>2014-08-18</FchResol>
+<NroResol>0</NroResol>
+<FchInicio>2022-02-20</FchInicio>
+<FchFinal>2022-02-20</FchFinal>
+<SecEnvio>1</SecEnvio>
+<TmstFirmaEnv>2022-02-21T16:57:33</TmstFirmaEnv>
+</Caratula>
+<Resumen>
+<TipoDocumento>39</TipoDocumento>
+<MntTotal>4000</MntTotal>
+<FoliosEmitidos>1</FoliosEmitidos>
+<FoliosAnulados>1</FoliosAnulados>
+<FoliosUtilizados>2</FoliosUtilizados>
+</Resumen>
+<Resumen>
+<TipoDocumento>41</TipoDocumento>
+<MntExento>8000</MntExento>
+<MntTotal>8000</MntTotal>
+<FoliosEmitidos>3</FoliosEmitidos>
+<FoliosAnulados>1</FoliosAnulados>
+<FoliosUtilizados>4</FoliosUtilizados>
+</Resumen>
+</DocumentoConsumoFolios>
+</ConsumoFolios>
