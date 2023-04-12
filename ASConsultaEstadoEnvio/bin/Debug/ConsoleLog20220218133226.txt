@@ -1,0 +1,40 @@
+[2022-02-18 13:30:47]: TOKEN VALIDO DE BOLETAS AUN, ULTIMO USO: 18-02-2022 13:27:08
+[18-02-2022 13:30:47]: Chequeando Sobres...
+[18-02-2022 13:30:47]: Hubo un error oh shieeet, respuesta del servidor del SII: Error de Permiso
+[18-02-2022 13:30:47]: Hubo un error, respuesta del servidor del SII:Error de Permiso
+[2022-02-18 13:30:57]: TOKEN VALIDO DE BOLETAS AUN, ULTIMO USO: 18-02-2022 13:27:08
+[18-02-2022 13:30:57]: Chequeando Sobres...
+[18-02-2022 13:30:57]: Hubo un error oh shieeet, respuesta del servidor del SII: Error de Permiso
+[18-02-2022 13:30:57]: Hubo un error, respuesta del servidor del SII:Error de Permiso
+[2022-02-18 13:31:07]: TOKEN VALIDO DE BOLETAS AUN, ULTIMO USO: 18-02-2022 13:27:08
+[18-02-2022 13:31:07]: Chequeando Sobres...
+[18-02-2022 13:31:07]: Hubo un error oh shieeet, respuesta del servidor del SII: Error de Permiso
+[18-02-2022 13:31:07]: Hubo un error, respuesta del servidor del SII:Error de Permiso
+[2022-02-18 13:31:17]: TOKEN VALIDO DE BOLETAS AUN, ULTIMO USO: 18-02-2022 13:27:08
+[18-02-2022 13:31:17]: Chequeando Sobres...
+[18-02-2022 13:31:17]: Hubo un error oh shieeet, respuesta del servidor del SII: Error de Permiso
+[18-02-2022 13:31:17]: Hubo un error, respuesta del servidor del SII:Error de Permiso
+[2022-02-18 13:31:27]: TOKEN VALIDO DE BOLETAS AUN, ULTIMO USO: 18-02-2022 13:27:08
+[18-02-2022 13:31:27]: Chequeando Sobres...
+[18-02-2022 13:31:27]: Hubo un error oh shieeet, respuesta del servidor del SII: Error de Permiso
+[18-02-2022 13:31:27]: Hubo un error, respuesta del servidor del SII:Error de Permiso
+[2022-02-18 13:31:37]: TOKEN VALIDO DE BOLETAS AUN, ULTIMO USO: 18-02-2022 13:27:08
+[18-02-2022 13:31:37]: Chequeando Sobres...
+[18-02-2022 13:31:37]: Hubo un error oh shieeet, respuesta del servidor del SII: Error de Permiso
+[18-02-2022 13:31:37]: Hubo un error, respuesta del servidor del SII:Error de Permiso
+[2022-02-18 13:31:47]: TOKEN VALIDO DE BOLETAS AUN, ULTIMO USO: 18-02-2022 13:27:08
+[18-02-2022 13:31:47]: Chequeando Sobres...
+[18-02-2022 13:31:47]: Hubo un error oh shieeet, respuesta del servidor del SII: Error de Permiso
+[18-02-2022 13:31:47]: Hubo un error, respuesta del servidor del SII:Error de Permiso
+[2022-02-18 13:31:57]: TOKEN VALIDO DE BOLETAS AUN, ULTIMO USO: 18-02-2022 13:27:08
+[18-02-2022 13:31:57]: Chequeando Sobres...
+[18-02-2022 13:31:57]: Hubo un error oh shieeet, respuesta del servidor del SII: Error de Permiso
+[18-02-2022 13:31:57]: Hubo un error, respuesta del servidor del SII:Error de Permiso
+[2022-02-18 13:32:07]: TOKEN VALIDO DE BOLETAS AUN, ULTIMO USO: 18-02-2022 13:27:08
+[18-02-2022 13:32:07]: Chequeando Sobres...
+[18-02-2022 13:32:07]: Hubo un error oh shieeet, respuesta del servidor del SII: Error de Permiso
+[18-02-2022 13:32:07]: Hubo un error, respuesta del servidor del SII:Error de Permiso
+[2022-02-18 13:32:17]: TOKEN VALIDO DE BOLETAS AUN, ULTIMO USO: 18-02-2022 13:27:08
+[18-02-2022 13:32:17]: Chequeando Sobres...
+[18-02-2022 13:32:17]: Hubo un error oh shieeet, respuesta del servidor del SII: Error de Permiso
+[18-02-2022 13:32:17]: Hubo un error, respuesta del servidor del SII:Error de Permiso
