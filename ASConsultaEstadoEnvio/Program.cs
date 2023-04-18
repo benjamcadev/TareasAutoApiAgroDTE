@@ -54,17 +54,17 @@ namespace TareasProgramadasAgroDTE
             CargarDatos();
 
 
-            //EJECUTAR CADA 20 MINUTOS //VERIFICADO--------------------------------------------------------------
+            //EJECUTAR CADA 15 MINUTOS //VERIFICADO--------------------------------------------------------------
             System.Timers.Timer eTimer = new System.Timers.Timer();
             eTimer.Elapsed += new ElapsedEventHandler(ExecuteChequearEstadoEnvioBoletas);
-            eTimer.Interval = 1200000; //INTERVALO DE TIEMPO DE EJECUCION DEL PROGRAMA
+            eTimer.Interval = 900000; //INTERVALO DE TIEMPO DE EJECUCION DEL PROGRAMA
             eTimer.Enabled = true;
 
 
             //EJECUTAR CADA 15 MINUTOS // VERIFICADO -----------------------------------------------------------
             System.Timers.Timer aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(ExecuteChequearEstadoEnvioFacturas);
-            aTimer.Interval = 300000; //INTERVALO DE TIEMPO DE EJECUCION DEL PROGRAMA
+            aTimer.Interval = 900000; //INTERVALO DE TIEMPO DE EJECUCION DEL PROGRAMA
             aTimer.Enabled = true;
 
 
@@ -123,10 +123,10 @@ namespace TareasProgramadasAgroDTE
             vTimer.Interval = 86400000; //INTERVALO DE TIEMPO DE EJECUCION DEL PROGRAMA
             vTimer.Enabled = true;
 
-            //EJECUTAR CADA 15 min  // VERIFICADO ------------------------------------------------------------
+            //EJECUTAR CADA 5 min  // VERIFICADO ------------------------------------------------------------
             System.Timers.Timer v3Timer = new System.Timers.Timer();
             v3Timer.Elapsed += new ElapsedEventHandler(ExecuteEnviarSobreSII);
-            v3Timer.Interval = 900000; //INTERVALO DE TIEMPO DE EJECUCION DEL PROGRAMA
+            v3Timer.Interval = 300000; //INTERVALO DE TIEMPO DE EJECUCION DEL PROGRAMA
             v3Timer.Enabled = true;
 
             Console.WriteLine("Si desea ejecutar un metodo manualmente, Favor escribir el numero metodo:");
@@ -270,8 +270,8 @@ namespace TareasProgramadasAgroDTE
             mensaje = mensaje + "Version: " + build_version + Environment.NewLine;
             mensaje = mensaje + "Fecha inicializacion: " + getFecha() + Environment.NewLine;
             mensaje = mensaje + "-----------------------------------------" + Environment.NewLine;
-            mensaje = mensaje + "1. ChequearEstadoEnvioBoletas() : SE EJECUTA CADA 20MIN" + Environment.NewLine;
-            mensaje = mensaje + "2. ChequearEstadoEnvioFacturas() : SE EJECUTA CADA 5MIN" + Environment.NewLine;
+            mensaje = mensaje + "1. ChequearEstadoEnvioBoletas() : SE EJECUTA CADA 15MIN" + Environment.NewLine;
+            mensaje = mensaje + "2. ChequearEstadoEnvioFacturas() : SE EJECUTA CADA 15MIN" + Environment.NewLine;
             mensaje = mensaje + "3. EnviarSobresCliente() : SE EJECUTA CADA 30MIN" + Environment.NewLine;
             mensaje = mensaje + "4. VerificarVigenciaTokenBoletas() : SE EJECUTA CADA 30MIN" + Environment.NewLine;
             mensaje = mensaje + "5. LimpiarConsola() : SE EJECUTA CADA 1 HORA" + Environment.NewLine;
@@ -281,7 +281,7 @@ namespace TareasProgramadasAgroDTE
             mensaje = mensaje + "9. VerificarVigenciaTokenPortalSII() : SE EJECUTA CADA 25 MINUTOS" + Environment.NewLine;
             mensaje = mensaje + "10. VerificarCAF() : SE EJECUTA CADA 25 MINUTOS" + Environment.NewLine;
             mensaje = mensaje + "11. VerificarAcusesClientes() : SE EJECUTA CADA 24 HORAS" + Environment.NewLine;
-            mensaje = mensaje + "12. EnviarSobreSII() : SE EJECUTA CADA 15 MINUTOS" + Environment.NewLine;
+            mensaje = mensaje + "12. EnviarSobreSII() : SE EJECUTA CADA 5 MINUTOS" + Environment.NewLine;
 
             Consola_log = Consola_log + mensaje + Environment.NewLine;
 
@@ -411,8 +411,8 @@ namespace TareasProgramadasAgroDTE
 
             mensaje = Environment.NewLine;
             mensaje = mensaje + "-----------------------------------------" + Environment.NewLine;
-            mensaje = mensaje + "1. ChequearEstadoEnvioBoletas() : SE EJECUTA CADA 20MIN" + Environment.NewLine;
-            mensaje = mensaje + "2. ChequearEstadoEnvioFacturas() : SE EJECUTA CADA 5MIN" + Environment.NewLine;
+            mensaje = mensaje + "1. ChequearEstadoEnvioBoletas() : SE EJECUTA CADA 15MIN" + Environment.NewLine;
+            mensaje = mensaje + "2. ChequearEstadoEnvioFacturas() : SE EJECUTA CADA 15MIN" + Environment.NewLine;
             mensaje = mensaje + "3. EnviarSobresCliente() : SE EJECUTA CADA 30MIN" + Environment.NewLine;
             mensaje = mensaje + "4. VerificarVigenciaTokenBoletas() : SE EJECUTA CADA 30MIN" + Environment.NewLine;
             mensaje = mensaje + "5. LimpiarConsola() : SE EJECUTA CADA 1 HORA" + Environment.NewLine;
@@ -422,7 +422,7 @@ namespace TareasProgramadasAgroDTE
             mensaje = mensaje + "9. VerificarVigenciaTokenPortalSII() : SE EJECUTA CADA 25 MINUTOS" + Environment.NewLine;
             mensaje = mensaje + "10. VerificarCAF() : SE EJECUTA CADA 24 HORAS" + Environment.NewLine;
             mensaje = mensaje + "11. VerificarAcusesClientes() : SE EJECUTA CADA 24 HORAS" + Environment.NewLine;
-            mensaje = mensaje + "12. EvniarSobreSII() : SE EJECUTA CADA 15 MINUTOS" + Environment.NewLine;
+            mensaje = mensaje + "12. EvniarSobreSII() : SE EJECUTA CADA 5 MINUTOS" + Environment.NewLine;
             mensaje = mensaje + Environment.NewLine;
             mensaje = mensaje + "Si desea ejecutar un metodo manualmente, Favor escribir el numero metodo:";
 
@@ -431,6 +431,12 @@ namespace TareasProgramadasAgroDTE
             Consola_log = Consola_log + mensaje + Environment.NewLine;
 
             mutex.ReleaseMutex();
+
+            // Starts a new instance of the program itself
+            System.Diagnostics.Process.Start(System.AppDomain.CurrentDomain.FriendlyName);
+
+            // Closes the current process
+            Environment.Exit(0);
         }
         private static void ExecuteChequearEstadoEnvioFacturas(object source, ElapsedEventArgs e)
         {
@@ -532,9 +538,9 @@ namespace TareasProgramadasAgroDTE
            */
 
 
-            mutex.WaitOne();
+          
             VerificarVigenciaToken(servidor_facturas);
-            mutex.ReleaseMutex();
+           
         }
         public static void ExecuteActualizarEstadoRespuesta(object source, ElapsedEventArgs e)
         {
@@ -3332,6 +3338,7 @@ namespace TareasProgramadasAgroDTE
                 {
                     //obtenemos fecha y hora actual
                     //string fecha_hora_actual = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+
                     DateTime ultimo_uso_token = DateTime.Parse(fecha_ultimo_uso_token[0]);
 
                     DateTime fecha_actual = DateTime.ParseExact(datetime_str, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
