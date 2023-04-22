@@ -86,10 +86,10 @@ namespace TareasProgramadasAgroDTE
             iTimer.Interval = 1500000; //INTERVALO DE TIEMPO DE EJECUCION DEL PROGRAMA
             iTimer.Enabled = true;
 
-            //EJECUTAR CADA 1 HORAS //VERIFICADOOO   ---------------------------------------------------------
+            //EJECUTAR CADA 6 HORAS //VERIFICADOOO   ---------------------------------------------------------
             System.Timers.Timer dTimer = new System.Timers.Timer();
             dTimer.Elapsed += new ElapsedEventHandler(ExecuteLimpiarConsola);
-            dTimer.Interval = 3600000; //INTERVALO DE TIEMPO DE EJECUCION DEL PROGRAMA
+            dTimer.Interval = 21600000; //INTERVALO DE TIEMPO DE EJECUCION DEL PROGRAMA
             dTimer.Enabled = true;
 
             //EJECUTAR CADA 8 HORAS //VERIFICADOOO   ---------------------------------------------------------
@@ -99,28 +99,28 @@ namespace TareasProgramadasAgroDTE
             //fTimer.Enabled = true;
 
 
-            //EJECUTAR CADA 2 HORAS //VERIFICADO --------------------------------------------------------------
+            //EJECUTAR CADA 1 HORAS //VERIFICADO --------------------------------------------------------------
             System.Timers.Timer gTimer = new System.Timers.Timer();
             gTimer.Elapsed += new ElapsedEventHandler(ExecuteDescargarFacturaCompra);
-            gTimer.Interval = 7200000; //INTERVALO DE TIEMPO DE EJECUCION DEL PROGRAMA
+            gTimer.Interval = 1800000; //INTERVALO DE TIEMPO DE EJECUCION DEL PROGRAMA
             gTimer.Enabled = true;
 
-            //EJECUTAR CADA 24 HORAS // VERIFICADO ------------------------------------------------------------
+            //EJECUTAR CADA 2 HORAS // VERIFICADO ------------------------------------------------------------
             System.Timers.Timer hTimer = new System.Timers.Timer();
             hTimer.Elapsed += new ElapsedEventHandler(ExecuteActualizarEstadoRespuesta);
-            hTimer.Interval = 86400000; //INTERVALO DE TIEMPO DE EJECUCION DEL PROGRAMA
+            hTimer.Interval = 3600000; //INTERVALO DE TIEMPO DE EJECUCION DEL PROGRAMA
             hTimer.Enabled = true;
 
-            //EJECUTAR CADA 24 HORAS // VERIFICADO ------------------------------------------------------------
+            //EJECUTAR CADA 5 HORAS // VERIFICADO ------------------------------------------------------------
             System.Timers.Timer oTimer = new System.Timers.Timer();
             oTimer.Elapsed += new ElapsedEventHandler(ExecuteVerificarCAF);
-            oTimer.Interval = 86400000; //INTERVALO DE TIEMPO DE EJECUCION DEL PROGRAMA
+            oTimer.Interval = 9000000; //INTERVALO DE TIEMPO DE EJECUCION DEL PROGRAMA
             oTimer.Enabled = true;
 
-            //EJECUTAR CADA 24 HORAS // VERIFICADO ------------------------------------------------------------
+            //EJECUTAR CADA 5 HORAS // VERIFICADO ------------------------------------------------------------
             System.Timers.Timer vTimer = new System.Timers.Timer();
             vTimer.Elapsed += new ElapsedEventHandler(ExecuteVerificarAcusesClientes);
-            vTimer.Interval = 86400000; //INTERVALO DE TIEMPO DE EJECUCION DEL PROGRAMA
+            vTimer.Interval = 9000000; //INTERVALO DE TIEMPO DE EJECUCION DEL PROGRAMA
             vTimer.Enabled = true;
 
             //EJECUTAR CADA 5 min  // VERIFICADO ------------------------------------------------------------
@@ -274,13 +274,13 @@ namespace TareasProgramadasAgroDTE
             mensaje = mensaje + "2. ChequearEstadoEnvioFacturas() : SE EJECUTA CADA 15MIN" + Environment.NewLine;
             mensaje = mensaje + "3. EnviarSobresCliente() : SE EJECUTA CADA 30MIN" + Environment.NewLine;
             mensaje = mensaje + "4. VerificarVigenciaTokenBoletas() : SE EJECUTA CADA 30MIN" + Environment.NewLine;
-            mensaje = mensaje + "5. LimpiarConsola() : SE EJECUTA CADA 1 HORA" + Environment.NewLine;
+            mensaje = mensaje + "5. LimpiarConsola() : SE EJECUTA CADA 6 HORA" + Environment.NewLine;
             mensaje = mensaje + "6. EnviarConsumoFolios() : ***DESCONTINUADA***" + Environment.NewLine;
-            mensaje = mensaje + "7. DescargarFacturaCompra() : SE EJECUTA CADA 2 HORAS" + Environment.NewLine;
-            mensaje = mensaje + "8. ActualizarEstadoRespuesta() : SE EJECUTA CADA 24 HORAS" + Environment.NewLine;
+            mensaje = mensaje + "7. DescargarFacturaCompra() : SE EJECUTA CADA 1 HORA" + Environment.NewLine;
+            mensaje = mensaje + "8. ActualizarEstadoRespuesta() : SE EJECUTA CADA 2 HORAS" + Environment.NewLine;
             mensaje = mensaje + "9. VerificarVigenciaTokenPortalSII() : SE EJECUTA CADA 25 MINUTOS" + Environment.NewLine;
-            mensaje = mensaje + "10. VerificarCAF() : SE EJECUTA CADA 25 MINUTOS" + Environment.NewLine;
-            mensaje = mensaje + "11. VerificarAcusesClientes() : SE EJECUTA CADA 24 HORAS" + Environment.NewLine;
+            mensaje = mensaje + "10. VerificarCAF() : SE EJECUTA CADA 5 HORAS" + Environment.NewLine;
+            mensaje = mensaje + "11. VerificarAcusesClientes() : SE EJECUTA CADA 5 HORAS" + Environment.NewLine;
             mensaje = mensaje + "12. EnviarSobreSII() : SE EJECUTA CADA 5 MINUTOS" + Environment.NewLine;
 
             Consola_log = Consola_log + mensaje + Environment.NewLine;
@@ -415,14 +415,14 @@ namespace TareasProgramadasAgroDTE
             mensaje = mensaje + "2. ChequearEstadoEnvioFacturas() : SE EJECUTA CADA 15MIN" + Environment.NewLine;
             mensaje = mensaje + "3. EnviarSobresCliente() : SE EJECUTA CADA 30MIN" + Environment.NewLine;
             mensaje = mensaje + "4. VerificarVigenciaTokenBoletas() : SE EJECUTA CADA 30MIN" + Environment.NewLine;
-            mensaje = mensaje + "5. LimpiarConsola() : SE EJECUTA CADA 1 HORA" + Environment.NewLine;
+            mensaje = mensaje + "5. LimpiarConsola() : SE EJECUTA CADA 6 HORAS" + Environment.NewLine;
             mensaje = mensaje + "6. EnviarConsumoFolios() : ****DESCONTINUADA****" + Environment.NewLine;
-            mensaje = mensaje + "7. DescargarFacturaCompra() : SE EJECUTA CADA 2 HORAS" + Environment.NewLine;
-            mensaje = mensaje + "8. ActualizarEstadoRespuesta() : SE EJECUTA CADA 24 HORAS" + Environment.NewLine;
+            mensaje = mensaje + "7. DescargarFacturaCompra() : SE EJECUTA CADA 1 HORA" + Environment.NewLine;
+            mensaje = mensaje + "8. ActualizarEstadoRespuesta() : SE EJECUTA CADA 2 HORAS" + Environment.NewLine;
             mensaje = mensaje + "9. VerificarVigenciaTokenPortalSII() : SE EJECUTA CADA 25 MINUTOS" + Environment.NewLine;
-            mensaje = mensaje + "10. VerificarCAF() : SE EJECUTA CADA 24 HORAS" + Environment.NewLine;
-            mensaje = mensaje + "11. VerificarAcusesClientes() : SE EJECUTA CADA 24 HORAS" + Environment.NewLine;
-            mensaje = mensaje + "12. EvniarSobreSII() : SE EJECUTA CADA 5 MINUTOS" + Environment.NewLine;
+            mensaje = mensaje + "10. VerificarCAF() : SE EJECUTA CADA 5 HORAS" + Environment.NewLine;
+            mensaje = mensaje + "11. VerificarAcusesClientes() : SE EJECUTA CADA 5 HORAS" + Environment.NewLine;
+            mensaje = mensaje + "12. EnviarSobreSII() : SE EJECUTA CADA 5 MINUTOS" + Environment.NewLine;
             mensaje = mensaje + Environment.NewLine;
             mensaje = mensaje + "Si desea ejecutar un metodo manualmente, Favor escribir el numero metodo:";
 
