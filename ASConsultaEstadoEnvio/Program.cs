@@ -37,14 +37,14 @@ namespace TareasProgramadasAgroDTE
         public static string servidor_boletas = "api";//Produccion: api o rahue, Certificacion: apicert o pangal
         public static string servidor_facturas = "palena";//Produccion: palena, Certificacion: maullin
         public static string servidor_PortalSII = "zeusr.sii.cl";//Produccion: zeusr.sii.cl, Certificacion: 
-        public static string RutEmisor = "";
-        public static string RutEnvia = "";
-        public static string FchResol = "";
-        public static string NroResol = "";
-        public static string MailSistema = "";
-        public static string PassSistema = "";
-        public static string MailCobranza = "";
-        public static string directorio_archivos = "";
+        public static string RutEmisor = ""; //Rut de la empresa registrada en el SII
+        public static string RutEnvia = ""; //Rut del emisor de documentos registrado en el SII
+        public static string FchResol = ""; // Fecha de la resolucion
+        public static string NroResol = ""; //Numero de la resolucion
+        public static string MailSistema = ""; //Correo asignado al sistema para que envie correos automaticos
+        public static string PassSistema = ""; //Contraseña del correo del sistema
+        public static string MailCobranza = ""; //Correo del area de cobranza
+        public static string directorio_archivos = ""; //Direcotrio de archivos
         public static string datetime_str = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
         public static bool es_produccion = true; //Produccion: true
         private static Mutex mutex = new Mutex();
@@ -716,75 +716,81 @@ namespace TareasProgramadasAgroDTE
 
                 if (list_datos_finales.Count() != 0)
                 {
-                    //MANDAR CORREO
-                    string mensajeCorreo = "<html><body>"
-                    + "<h3> AVISO DE RECHAZOS EN DTE:</h3>"
-                    + "<div>"
-                    + "<p> Hemos detectado rechazos por parte de cliente en los siguientes documentos:</p>"
-                    + "<ul>";
+                    var date = DateTime.Now; 
 
-                    //RESCATAMOS LA IMAGEN
-                    Bitmap bitmap = new Bitmap(@"C:\inetpub\wwwroot\api_agrodte\AgroDTE_Archivos\logo_AgroDTE_OFICIAL.png");
-                    System.IO.MemoryStream ms = new MemoryStream();
-                    bitmap.Save(ms, ImageFormat.Png);
-                    byte[] byteImage = ms.ToArray();
-                    var SigBase64 = Convert.ToBase64String(byteImage);
-
-                    for (int i = 0; i < list_datos_finales.Count; i = i + 5)
+                    if (date.Hour > 9 && date.Hour < 17) //ENVIAR CORREO EN HORARIO LABORAL
                     {
-                        mensajeCorreo = mensajeCorreo + "<li  style=\"margin: 10px 0;\"><b> Folio:</b> " + list_datos_finales[i] + " | <b> Razon Social:</b> " + list_datos_finales[i + 1] + " | <b> Fecha Emision:</b> " + list_datos_finales[i + 2] + " | <b> Glosa o Motivo:</b> " + list_datos_finales[i + 3] + " | <b> Correo intercambio DTE:</b> " + list_datos_finales[i + 4] + " </li>";
-                    }
-                    mensajeCorreo = mensajeCorreo + "  </ul>"
-                                                + "<p style = \"font-size: 13px;\"> Correo generado automatico por AgroDTE.</p>"
-                                                     + "</div>";
-                    mensajeCorreo = mensajeCorreo + @"<img src=""data:image/png;base64," + SigBase64 + @"""   width=""220"" height=""100"">";
-                    mensajeCorreo = mensajeCorreo + "</body>"
-                                                   + "</html>";
-                    string asunto = "AVISO DE RECHAZOS DTE";
+                        //MANDAR CORREO
+                        string mensajeCorreo = "<html><body>"
+                        + "<h3> AVISO DE RECHAZOS EN DTE:</h3>"
+                        + "<div>"
+                        + "<p> Hemos detectado rechazos por parte de cliente en los siguientes documentos:</p>"
+                        + "<ul>";
 
-                    try
-                    {
+                        //RESCATAMOS LA IMAGEN
+                        Bitmap bitmap = new Bitmap(@"C:\inetpub\wwwroot\api_agrodte\AgroDTE_Archivos\logo_AgroDTE_OFICIAL.png");
+                        System.IO.MemoryStream ms = new MemoryStream();
+                        bitmap.Save(ms, ImageFormat.Png);
+                        byte[] byteImage = ms.ToArray();
+                        var SigBase64 = Convert.ToBase64String(byteImage);
 
-                        SmtpClient mySmtpClient = new SmtpClient("mail.agroplastic.cl");
+                        for (int i = 0; i < list_datos_finales.Count; i = i + 5)
+                        {
+                            mensajeCorreo = mensajeCorreo + "<li  style=\"margin: 10px 0;\"><b> Folio:</b> " + list_datos_finales[i] + " | <b> Razon Social:</b> " + list_datos_finales[i + 1] + " | <b> Fecha Emision:</b> " + list_datos_finales[i + 2] + " | <b> Glosa o Motivo:</b> " + list_datos_finales[i + 3] + " | <b> Correo intercambio DTE:</b> " + list_datos_finales[i + 4] + " </li>";
+                        }
+                        mensajeCorreo = mensajeCorreo + "  </ul>"
+                                                    + "<p style = \"font-size: 13px;\"> Correo generado automatico por AgroDTE.</p>"
+                                                         + "</div>";
+                        mensajeCorreo = mensajeCorreo + @"<img src=""data:image/png;base64," + SigBase64 + @"""   width=""220"" height=""100"">";
+                        mensajeCorreo = mensajeCorreo + "</body>"
+                                                       + "</html>";
+                        string asunto = "AVISO DE RECHAZOS DTE";
 
-                        // set smtp-client with basicAuthentication
-                        mySmtpClient.UseDefaultCredentials = false;
-                        System.Net.NetworkCredential basicAuthenticationInfo = new
-                           System.Net.NetworkCredential(MailSistema, PassSistema);
-                        mySmtpClient.Credentials = basicAuthenticationInfo;
+                        try
+                        {
 
-                        // add from,to mailaddresses
-                        System.Net.Mail.MailAddress from = new System.Net.Mail.MailAddress(MailSistema, "AgroDTE");
-                        //MailAddress to = new MailAddress("bmcortes@agroplastic.cl, mriquelme@agroplastic.cl", "Benjamin");
-                        MailMessage myMail = new MailMessage();
-                        myMail.To.Add(MailCobranza); // MailCobranza
-                        myMail.To.Add("mriquelme@agroplastic.cl");
-                        //myMail.To.Add("agrodte@agroplastic.cl");
-                        myMail.From = from;
+                            SmtpClient mySmtpClient = new SmtpClient("mail.agroplastic.cl");
+
+                            // set smtp-client with basicAuthentication
+                            mySmtpClient.UseDefaultCredentials = false;
+                            System.Net.NetworkCredential basicAuthenticationInfo = new
+                               System.Net.NetworkCredential(MailSistema, PassSistema);
+                            mySmtpClient.Credentials = basicAuthenticationInfo;
+
+                            // add from,to mailaddresses
+                            System.Net.Mail.MailAddress from = new System.Net.Mail.MailAddress(MailSistema, "AgroDTE");
+                            //MailAddress to = new MailAddress("bmcortes@agroplastic.cl, mriquelme@agroplastic.cl", "Benjamin");
+                            MailMessage myMail = new MailMessage();
+                            myMail.To.Add(MailCobranza); // MailCobranza
+                            myMail.To.Add("mriquelme@agroplastic.cl");
+                            //myMail.To.Add("agrodte@agroplastic.cl");
+                            myMail.From = from;
 
 
 
-                        // add ReplyTo
-                        //MailAddress replyTo = new MailAddress("mriquelme@agroplastic.cl");
-                        //myMail.ReplyToList.Add(replyTo);
+                            // add ReplyTo
+                            //MailAddress replyTo = new MailAddress("mriquelme@agroplastic.cl");
+                            //myMail.ReplyToList.Add(replyTo);
 
-                        // set subject and encoding
-                        myMail.Subject = asunto;
-                        myMail.SubjectEncoding = System.Text.Encoding.UTF8;
+                            // set subject and encoding
+                            myMail.Subject = asunto;
+                            myMail.SubjectEncoding = System.Text.Encoding.UTF8;
 
-                        // set body-message and encoding
-                        myMail.Body = mensajeCorreo;
-                        myMail.BodyEncoding = System.Text.Encoding.UTF8;
-                        // text or html
-                        myMail.IsBodyHtml = true;
+                            // set body-message and encoding
+                            myMail.Body = mensajeCorreo;
+                            myMail.BodyEncoding = System.Text.Encoding.UTF8;
+                            // text or html
+                            myMail.IsBodyHtml = true;
 
-                        mySmtpClient.Send(myMail);
-                    }
+                            mySmtpClient.Send(myMail);
+                        }
 
-                    catch (SmtpException ex)
-                    {
-                        throw new ApplicationException
-                          ("SmtpException has occured: " + ex.Message);
+                        catch (SmtpException ex)
+                        {
+                            throw new ApplicationException
+                              ("SmtpException has occured: " + ex.Message);
+                        }
+
                     }
 
                 }
@@ -1337,7 +1343,10 @@ namespace TareasProgramadasAgroDTE
                 lista_ultimo_folio = conexion.Select(consulta_ultimo_folio);
 
                 int diferencia = Int32.Parse(lista_rango_maximo[i]) - Int32.Parse(lista_ultimo_folio[0]);
-                if (diferencia < 1000)
+
+                var date = DateTime.Now; //ENVIAR CORREOS SOLO EN HORARIO LABORAL
+
+                if (diferencia < 1000 && date.Hour > 9 && date.Hour < 17)
                 {
                     mandarEmailCaf(tipo_dte,diferencia);
                 }
