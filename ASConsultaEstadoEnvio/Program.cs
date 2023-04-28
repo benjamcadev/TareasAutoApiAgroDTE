@@ -1459,7 +1459,7 @@ namespace TareasProgramadasAgroDTE
         public static void descargarFacturaCompra()
         {
             
-            int id_correo_malo = 0;
+          
 
             
 
@@ -1487,12 +1487,20 @@ namespace TareasProgramadasAgroDTE
 
                     //BUSCAR LA UID DEL CORREO EN LA BD
                     var uid_correos = client.GetMessageUids();
-                        var messageCount = client.GetMessageCount();
+                    var messageCount = client.GetMessageCount();
+                    var topeMensajes = 0;
+
+                    //SI LA CUENTA DE INTERCAMBIO DE CORREOS TIENE MAS DE 5000 CORREOS DEJA UN LIMITE DE ANALIZAR SOLO LA MITAD
+                    if (messageCount > 5000)
+                    {
+                        double resultado = messageCount / 2;
+                        topeMensajes = Convert.ToInt32( Math.Round(resultado));
+                    }
 
                         List<Message> allMessages = new List<Message>(messageCount);
 
                         //RECORRER LOS CORREOS
-                        for (int i = messageCount; i > 0; i--)
+                        for (int i = messageCount; i > topeMensajes; i--)
                         {
                         Console.WriteLine("Correo id: "+i);
                             //OBTENER EL CORREO
