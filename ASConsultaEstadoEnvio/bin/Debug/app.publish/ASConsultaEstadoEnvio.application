@@ -7,7 +7,7 @@
     <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="ASConsultaEstadoEnvio.exe.manifest" size="12523">
+    <dependentAssembly dependencyType="install" codebase="Application Files\ASConsultaEstadoEnvio_1_0_0_59\ASConsultaEstadoEnvio.exe.manifest" size="12523">
       <assemblyIdentity name="ASConsultaEstadoEnvio.exe" version="1.0.0.59" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>

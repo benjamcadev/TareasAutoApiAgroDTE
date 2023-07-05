@@ -3443,6 +3443,8 @@ namespace TareasProgramadasAgroDTE
             {
                 string datetime_str = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                 string diaActual = DateTime.Now.ToString("yyyy-MM-dd");
+                // SACAR DIAS ANTERIORES
+                string diaAnterior = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
 
                 //SE DEBE RESTAR UNOS 5 MINUTOS A LA HORA ACTUAL PORQUE EL SII DEMORA EN VALIDAR LOS SOBRES.
                 TimeSpan horaUpdateada = horaActual.Add(new TimeSpan(0, -5, 0));
@@ -3452,8 +3454,8 @@ namespace TareasProgramadasAgroDTE
                 ConexionBD conexion = new ConexionBD();
                 if (servidor == "api" || servidor == "apicert")
                 {
-                    string query_boleta_exenta = "SELECT trackid_envio_dte FROM envio_dte INNER JOIN boleta_exenta ON boleta_exenta.id_envio_dte_fk = envio_dte.id_envio_dte WHERE trackid_envio_dte != '0' AND revision_envio_dte = '0' AND fecha_envio_dte >= '" + diaActual + " 08:00:00' AND fecha_envio_dte <= '" + diaActual + " " + horaUpdateada.Hours + ":" + horaUpdateada.Minutes + ":00'";
-                    string query_boleta = "SELECT trackid_envio_dte FROM envio_dte INNER JOIN boleta ON boleta.id_envio_dte_fk = envio_dte.id_envio_dte WHERE trackid_envio_dte != '0' AND revision_envio_dte = '0' AND fecha_envio_dte >= '" + diaActual + " 08:00:00' AND fecha_envio_dte <= '" + diaActual + " " + horaUpdateada.Hours + ":" + horaUpdateada.Minutes + ":00'";
+                    string query_boleta_exenta = "SELECT trackid_envio_dte FROM envio_dte INNER JOIN boleta_exenta ON boleta_exenta.id_envio_dte_fk = envio_dte.id_envio_dte WHERE trackid_envio_dte != '0' AND revision_envio_dte = '0' AND fecha_envio_dte >= '" + diaAnterior + " 08:00:00' AND fecha_envio_dte <= '" + diaActual + " " + horaUpdateada.Hours + ":" + horaUpdateada.Minutes + ":00'";
+                    string query_boleta = "SELECT trackid_envio_dte FROM envio_dte INNER JOIN boleta ON boleta.id_envio_dte_fk = envio_dte.id_envio_dte WHERE trackid_envio_dte != '0' AND revision_envio_dte = '0' AND fecha_envio_dte >= '" + diaAnterior + " 08:00:00' AND fecha_envio_dte <= '" + diaActual + " " + horaUpdateada.Hours + ":" + horaUpdateada.Minutes + ":00'";
                     List<string> listaTracksId_boletas = conexion.Select(query_boleta);
                     List<string> listaTracksId_boletas_exentas = conexion.Select(query_boleta_exenta);
 
@@ -3462,12 +3464,12 @@ namespace TareasProgramadasAgroDTE
                 }
                 if (servidor == "maullin" || servidor == "palena")
                 {
-                    string query_factura = "SELECT trackid_envio_dte FROM envio_dte INNER JOIN factura ON factura.id_envio_dte_fk = envio_dte.id_envio_dte WHERE trackid_envio_dte != '0' AND revision_envio_dte = '0' AND fecha_envio_dte >= '" + diaActual + " 08:00:00' AND fecha_envio_dte <= '" + diaActual + " " + horaUpdateada.Hours + ":" + horaUpdateada.Minutes + ":00'";
-                    string query_factura_exenta = "SELECT trackid_envio_dte FROM envio_dte INNER JOIN factura_exenta ON factura_exenta.id_envio_dte_fk = envio_dte.id_envio_dte WHERE trackid_envio_dte != '0' AND revision_envio_dte = '0' AND fecha_envio_dte >= '" + diaActual + " 08:00:00' AND fecha_envio_dte <= '" + diaActual + " " + horaUpdateada.Hours + ":" + horaUpdateada.Minutes + ":00'";
-                    string query_notacredito = "SELECT trackid_envio_dte FROM envio_dte INNER JOIN nota_credito ON nota_credito.id_envio_dte_fk = envio_dte.id_envio_dte WHERE trackid_envio_dte != '0' AND revision_envio_dte = '0' AND fecha_envio_dte >= '" + diaActual + " 08:00:00' AND fecha_envio_dte <= '" + diaActual + " " + horaUpdateada.Hours + ":" + horaUpdateada.Minutes + ":00'";
-                    string query_notadebito = "SELECT trackid_envio_dte FROM envio_dte INNER JOIN nota_debito ON nota_debito.id_envio_dte_fk = envio_dte.id_envio_dte WHERE trackid_envio_dte != '0' AND revision_envio_dte = '0' AND fecha_envio_dte >= '" + diaActual + " 08:00:00' AND fecha_envio_dte <= '" + diaActual + " " + horaUpdateada.Hours + ":" + horaUpdateada.Minutes + ":00'";
-                    string query_guiadespacho = "SELECT trackid_envio_dte FROM envio_dte INNER JOIN guia_despacho ON guia_despacho.id_envio_dte_fk = envio_dte.id_envio_dte WHERE trackid_envio_dte != '0' AND revision_envio_dte = '0' AND fecha_envio_dte >= '" + diaActual + " 08:00:00' AND fecha_envio_dte <= '" + diaActual + " " + horaUpdateada.Hours + ":" + horaUpdateada.Minutes + ":00'";
-                    string query_consumofolio = "SELECT trackid_envio_dte FROM envio_dte INNER JOIN consumo_folios ON consumo_folios.id_envio_dte_fk = envio_dte.id_envio_dte WHERE trackid_envio_dte != '0' AND revision_envio_dte = '0' AND fecha_envio_dte >= '" + diaActual + " 08:00:00' AND fecha_envio_dte <= '" + diaActual + " " + horaUpdateada.Hours + ":" + horaUpdateada.Minutes + ":00'";
+                    string query_factura = "SELECT trackid_envio_dte FROM envio_dte INNER JOIN factura ON factura.id_envio_dte_fk = envio_dte.id_envio_dte WHERE trackid_envio_dte != '0' AND revision_envio_dte = '0' AND fecha_envio_dte >= '" + diaAnterior + " 08:00:00' AND fecha_envio_dte <= '" + diaActual + " " + horaUpdateada.Hours + ":" + horaUpdateada.Minutes + ":00'";
+                    string query_factura_exenta = "SELECT trackid_envio_dte FROM envio_dte INNER JOIN factura_exenta ON factura_exenta.id_envio_dte_fk = envio_dte.id_envio_dte WHERE trackid_envio_dte != '0' AND revision_envio_dte = '0' AND fecha_envio_dte >= '" + diaAnterior + " 08:00:00' AND fecha_envio_dte <= '" + diaActual + " " + horaUpdateada.Hours + ":" + horaUpdateada.Minutes + ":00'";
+                    string query_notacredito = "SELECT trackid_envio_dte FROM envio_dte INNER JOIN nota_credito ON nota_credito.id_envio_dte_fk = envio_dte.id_envio_dte WHERE trackid_envio_dte != '0' AND revision_envio_dte = '0' AND fecha_envio_dte >= '" + diaAnterior + " 08:00:00' AND fecha_envio_dte <= '" + diaActual + " " + horaUpdateada.Hours + ":" + horaUpdateada.Minutes + ":00'";
+                    string query_notadebito = "SELECT trackid_envio_dte FROM envio_dte INNER JOIN nota_debito ON nota_debito.id_envio_dte_fk = envio_dte.id_envio_dte WHERE trackid_envio_dte != '0' AND revision_envio_dte = '0' AND fecha_envio_dte >= '" + diaAnterior + " 08:00:00' AND fecha_envio_dte <= '" + diaActual + " " + horaUpdateada.Hours + ":" + horaUpdateada.Minutes + ":00'";
+                    string query_guiadespacho = "SELECT trackid_envio_dte FROM envio_dte INNER JOIN guia_despacho ON guia_despacho.id_envio_dte_fk = envio_dte.id_envio_dte WHERE trackid_envio_dte != '0' AND revision_envio_dte = '0' AND fecha_envio_dte >= '" + diaAnterior + " 08:00:00' AND fecha_envio_dte <= '" + diaActual + " " + horaUpdateada.Hours + ":" + horaUpdateada.Minutes + ":00'";
+                    string query_consumofolio = "SELECT trackid_envio_dte FROM envio_dte INNER JOIN consumo_folios ON consumo_folios.id_envio_dte_fk = envio_dte.id_envio_dte WHERE trackid_envio_dte != '0' AND revision_envio_dte = '0' AND fecha_envio_dte >= '" + diaAnterior + " 08:00:00' AND fecha_envio_dte <= '" + diaActual + " " + horaUpdateada.Hours + ":" + horaUpdateada.Minutes + ":00'";
                     List<string> listaTracksId_facturas = conexion.Select(query_factura);
                     List<string> listaTracksId_facturas_exentas = conexion.Select(query_factura_exenta);
                     List<string> listaTracksId_notacredito = conexion.Select(query_notacredito);
